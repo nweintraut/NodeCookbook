@@ -15,6 +15,7 @@ var pages = [
     {id: '3', route: 'another page', output: function(){return 'Here\'s ' + this.route;}}
 ];
 var server = http.createServer(function(request, response){
+    if(request.url === '/favicon.ico'){ return response.end();}
     // var id = url.parse(decodeURI(request.url), true).query.id;
     var lookup = path.basename(decodeURI(request.url)) || 'index.html';
     var f = 'content/' + lookup;
