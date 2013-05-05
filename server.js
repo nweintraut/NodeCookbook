@@ -15,11 +15,27 @@ var pages = [
     {id: '3', route: 'another page', output: function(){return 'Here\'s ' + this.route;}}
 ];
 var server = http.createServer(function(request, response){
-    var id = url.parse(decodeURI(request.url), true).query.id;
+    // var id = url.parse(decodeURI(request.url), true).query.id;
     var lookup = path.basename(decodeURI(request.url)) || 'index.html';
     var f = 'content/' + lookup;
     fs.exists(f, function(exists){
-        console.log( exists ? lookup + " is there" : lookup + " doesn't exist");
+        if(exists){
+            fs.readFile(f, function(err, data){
+                if(err){
+                    response.writeHead(500);
+                    response.end('Sever error');
+                    return;
+                } else {
+                    var headers = {'Content-type': mimeTypes[path.extname(lookup)]};
+                    response.writeHead(200, headers);
+                    return response.end(data);
+                }
+                
+            });
+        } else {
+            response.writeHead(404); // no file found;
+            response.end();
+        }
     });
     /*
     console.log("Id is: " + id);
