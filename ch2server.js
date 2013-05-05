@@ -13,13 +13,17 @@ http.createServer(function(request, response){
         response.writeHead(200, {'Content-Type': 'text/html'});
         response.end(form);
     } else if(request.method === 'POST') {
-        var postData="";
-        request.on('data', function(chunk){
-            postData += chunk;
+        var incoming = new formidable.IncomingForm();
+        incoming.uploadDir = 'uploads';
+        incoming.on('file', function(field, file){
+            if(!file.size) {return;}
+            else {
+            response.write(file.name + ' received\n');
+            }
         }).on('end', function(){
-          console.log('User posted: \n' + postData + "\n---");
-          response.end("You posted: \n" + postData + "\n---");            
+            response.end("All files received");
         });
+        incoming.parse(request);
 
     }
 }).listen(port, function(){
