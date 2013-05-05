@@ -9,6 +9,20 @@ var mimeTypes = {
     '.html': 'text/html',
     '.css': 'text/css'
 };
+var cache = {};
+function cacheAndDeliver(f, cb){
+    if(!cache[f]) {
+        fs.readFile(f, function(err, data){
+            if(!err) {
+                cache[f] = {content:data};
+            }
+            cb(err, data);
+        });
+        return;
+    }
+    console.log("Loading " + f + " from cache");
+    cb(null, cache[f].content);
+}
 var pages = [
     {id: '1', route: '', output: 'Woohoo!'},
     {id: '2', route: 'about', output: "A simple routing with Node example"},
@@ -24,7 +38,7 @@ var server = http.createServer(function(request, response){
     var f = 'content/' + lookup;
     fs.exists(f, function(exists){
         if(exists){
-            fs.readFile(f, function(err, data){
+            cacheAndDeliver(f, function(err, data){
                 if(err){
                     response.writeHead(500);
                     response.end('Sever error');
