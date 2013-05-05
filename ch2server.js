@@ -15,7 +15,12 @@ http.createServer(function(request, response){
     } else if(request.method === 'POST') {
         var incoming = new formidable.IncomingForm();
         incoming.uploadDir = 'uploads';
-        incoming.on('file', function(field, file){
+//        incoming.maxFieldsSize = xxx; // limits size in bytes of non-file fields
+        incoming.on('fileBegin', function(field, file){
+            if(file.name) {
+                file.path += "_" + file.name;
+            }
+        }).on('file', function(field, file){
             if(!file.size) {return;}
             else {
             response.write(file.name + ' received\n');
