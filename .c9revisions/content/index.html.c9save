@@ -1,0 +1,2 @@
+{"ts":1367779493863,"silentsave":true,"restoring":false,"patch":[[]],"length":0}
+{"contributors":[],"silentsave":false,"ts":1367779663142,"patch":[[{"diffs":[[1,"<html>\n    <head>\n        <title>Yah Node!</title>\n        <link rel=stylesheet href=styles.css type=text/css></link>\n        <script src=script.js type=text/javascript></script>\n    </head>\n    <body>\n        <span id=yay>Yay!</span>\n    </body>\n</html>"]],"start1":0,"start2":0,"length1":0,"length2":254}]],"length":254,"saved":false}
