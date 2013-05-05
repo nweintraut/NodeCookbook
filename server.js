@@ -25,12 +25,11 @@ var server = http.createServer(function(request, response){
                     response.writeHead(500);
                     response.end('Sever error');
                     return;
-                } else {
-                    var headers = {'Content-type': mimeTypes[path.extname(lookup)]};
-                    response.writeHead(200, headers);
-                    return response.end(data);
-                }
-                
+                } 
+                var headers = {'Content-type': mimeTypes[path.extname(lookup)]};
+                response.writeHead(200, headers);
+                response.end(data);
+                return;           
             });
         } else {
             response.writeHead(404); // no file found;
