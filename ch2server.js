@@ -1,6 +1,7 @@
 // var http    = require('http');
 var querystring = require('querystring');
 var util = require('util');
+var formidable = require('formidable');
 var connect = require('connect');
 var port = process.env.PORT || 3000;
 var form = require('fs').readFileSync('./content/form.html');
