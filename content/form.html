@@ -4,11 +4,32 @@
         <script src=subcontent/script.js type=text/javascript></script>
     </head>
     <body>
-        <form method=post enctype=multipart/form-data >
-            <input type=file name=userfile1 /></br>
-            <input type=text name=userdata1 /></br>
+        <form id=frm >
+            <input type=file name=userfile id=userfile /></br>
             <input type=submit />
         </form>
         <span id=yay>Yay!</span>
+        <script>
+            (function(){
+                var userfile    = document.getElementById('userfile'),
+                    frm         = document.getElementById('frm'),
+                    file        = null;
+                userfile.addEventListener('change', function(){
+                    file = this.files[0];
+                });
+                frm.addEventListener('submit', function(e){
+                    e.preventDefault();
+                    if(file){
+                        var xhr = new XMLHttpRequest();
+                        xhr.file = file;
+                        xhr.open('put', window.location, true);
+                        xhr.setRequestHeader('x-uploadedfilename', file.fileName || file.name);
+                        xhr.send(file);
+                        file = '';
+                        frm.reset();
+                    }
+                });
+            })();
+        </script>
     </body>
 </html>
