@@ -8,6 +8,7 @@ var maxData = 2 * 1024 * 1024; // 2mb
 
 // http.createServer(function(request, response){
 connect(connect.limit('64kb'), connect.bodyParser(), function(request, response){
+    console.log(util.inspect(request));
     if(request.method === 'GET') {
         response.writeHead(200, {'Content-Type': 'text/html'});
         response.end(form);
