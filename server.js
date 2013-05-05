@@ -92,19 +92,21 @@ var server = http.createServer(function(request, response){
                 });
                 fs.stat(f, function(err, stats){
                     if(!err) {
-                        var bufferOffset = 0;
-                        cache2.store[f] = {content: new Buffer(stats.size), timestamp: Date.now()};
-                        s.on('data', function(data){
-                           data.copy(cache2.store[f].content, bufferOffset);
-                           bufferOffset += data.length;
-                        });                        
-                        /*
-                        cache[f] = {content: new Buffer(stats.size)};
-                        s.on('data', function(chunk){
-                           chunk.copy(cache[f].content, bufferOffset);
-                           bufferOffset += chunk.length;
-                        });
-                        */
+                        if(stats.size < cache2.maxSize) {
+                            var bufferOffset = 0;
+                            cache2.store[f] = {content: new Buffer(stats.size), timestamp: Date.now()};
+                            s.on('data', function(data){
+                               data.copy(cache2.store[f].content, bufferOffset);
+                               bufferOffset += data.length;
+                            });                        
+                            /*
+                            cache[f] = {content: new Buffer(stats.size)};
+                            s.on('data', function(chunk){
+                               chunk.copy(cache[f].content, bufferOffset);
+                               bufferOffset += chunk.length;
+                            });
+                            */
+                        }
                     }
                 });
             }
