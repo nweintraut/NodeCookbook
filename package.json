@@ -1,5 +1,5 @@
 {
-  "name": "Node Cookbook",
+  "name": "Node_Cookbook",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
 
   },
   "dependencies": {
-    "hotnode": "*"
+    "hotnode": "*",
+    "connect": "*"
   }
 }
