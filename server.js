@@ -40,22 +40,37 @@ var server = http.createServer(function(request, response){
         response.writeHead(404);
         return response.end();
     }
-    // var id = url.parse(decodeURI(request.url), true).query.id;
     var lookup = path.basename(decodeURI(request.url)) || 'index.html';
     var f = 'content/' + lookup;
     fs.exists(f, function(exists){
         if(exists){
-            cacheAndDeliver(f, function(err, data){
-                if(err){
-                    response.writeHead(500);
-                    response.end('Sever error');
-                    return;
-                } 
-                var headers = {'Content-type': mimeTypes[path.extname(lookup)]};
+            var headers = {'Content-type': mimeTypes[path.extname(f)]};
+            if(cache[f]){
+                console.log("Reading " + f + " from cache");
                 response.writeHead(200, headers);
-                response.end(data);
-                return;           
-            });
+                response.end(cache[f].content);
+                return;
+            } else {
+                var s = fs.createReadStream(f).once('open', function(){
+                    response.writeHead(200, headers);
+                    this.pipe(response);
+                }).once('error', function(e){
+                    console.log(e);
+                    response.writeHead(500);
+                    response.end('Sever Error.');
+                    return;
+                });
+                fs.stat(f, function(err, stats){
+                    if(!err) {
+                        var bufferOffset = 0;
+                        cache[f] = {content: new Buffer(stats.size)};
+                        s.on('data', function(chunk){
+                           chunk.copy(cache[f].content, bufferOffset);
+                           bufferOffset += chunk.length;
+                        });
+                    }
+                });
+            }
         } else {
             response.writeHead(404); // no file found;
             response.end();
