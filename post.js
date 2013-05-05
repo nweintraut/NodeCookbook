@@ -12,6 +12,7 @@ var request = http.get(urlOpts, function(response){
 });
 
 process.argv.forEach(function(postItem, index){
+    console.log(postItem);
     if (index > 1)   {request.write(postItem + '\n');} 
 });
 request.end();

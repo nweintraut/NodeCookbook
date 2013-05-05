@@ -12,7 +12,7 @@ connect(connect.limit('64kb'), connect.bodyParser(), function(request, response)
         response.writeHead(200, {'Content-Type': 'text/html'});
         response.end(form);
     } else if(request.method === 'POST') {
-          console.log('User posted: \n' + request.body + "\n---");
+          console.log('User posted: \n' + util.inspect(request.body) + "\n---");
           response.end("You posted: \n" + util.inspect(request.body) + "\n---");
     }
 }).listen(port, function(){
