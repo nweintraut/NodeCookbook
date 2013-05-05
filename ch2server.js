@@ -1,4 +1,6 @@
 var http    = require('http');
+var querystring = require('querystring');
+var util = require('util');
 var port = process.env.PORT || 3000;
 var form = require('fs').readFileSync('./content/form.html');
 
@@ -11,8 +13,9 @@ http.createServer(function(request, response){
       request.on('data', function(chunk){
           postData += chunk;
       }).on('end', function() {
-          console.log('User posted: \n' + postData + "\n---");
-          response.end("You posted: \n" + postData + "\n---");
+          var postDataObject = querystring.parse(postData);
+          console.log('User posted: \n' + postDataObject + "\n---");
+          response.end("You posted: \n" + util.inspect(postDataObject) + "\n---");
       });
     }
 }).listen(port, function(){

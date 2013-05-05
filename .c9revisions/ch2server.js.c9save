@@ -7,3 +7,7 @@
 {"ts":1367787845892,"patch":[[{"diffs":[[0,"        "],[1,"postData += chunck;"],[0,"\n      }"]],"start1":417,"start2":417,"length1":16,"length2":35}]],"length":704,"saved":false}
 {"ts":1367787847747,"patch":[[{"diffs":[[0," += chun"],[-1,"c"],[0,"k;\n     "]],"start1":433,"start2":433,"length1":17,"length2":16}]],"length":703,"saved":false}
 {"ts":1367787881909,"patch":[[{"diffs":[[0,"esponse."],[-1,"s"],[0,"end(\"You"]],"start1":550,"start2":550,"length1":17,"length2":16}]],"length":702,"saved":false}
+{"ts":1367788003681,"patch":[[{"diffs":[[0,"http');\n"],[1,"var querystring = require('querystring');\nvar util = require('util');\n"],[0,"var port"]],"start1":23,"start2":23,"length1":16,"length2":86}]],"length":772,"saved":false}
+{"ts":1367788046301,"patch":[[{"diffs":[[0,"unction() {\n"],[1,"          var postDataObject = querystring.parse(postData);\n"],[0,"          co"]],"start1":534,"start2":534,"length1":24,"length2":84}]],"length":832,"saved":false}
+{"ts":1367788059328,"patch":[[{"diffs":[[0,": \\n\" + "],[1,"util.inspect("],[0,"postData"],[1,"Object)"],[0," + \"\\n--"]],"start1":703,"start2":703,"length1":24,"length2":44}]],"length":852,"saved":false}
+{"ts":1367788084035,"patch":[[{"diffs":[[0,"postData"],[1,"Object"],[0," + \"\\n--"]],"start1":648,"start2":648,"length1":16,"length2":22}]],"length":858,"saved":false}
