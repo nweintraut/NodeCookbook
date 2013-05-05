@@ -11,17 +11,24 @@ var mimeTypes = {
 };
 var cache = {};
 function cacheAndDeliver(f, cb){
-    if(!cache[f]) {
-        fs.readFile(f, function(err, data){
+    fs.stat(f, function(err, stats){
+        if(err){ return cb(err, null);}
+        var lastChanged = Date.parse(stats.ctime);
+        var isUpdated = (cache[f]) && lastChanged > cache[f].timestamp;
+        if (!cache[f] || isUpdated) {
+            console.log("Reading file: "+ f);
+            fs.readFile(f, function(err, data){
             if(!err) {
-                cache[f] = {content:data};
+                cache[f] = {content:data, timestamp: Date.now()};
             }
             cb(err, data);
-        });
-        return;
-    }
-    console.log("Loading " + f + " from cache");
-    cb(null, cache[f].content);
+            });
+           return
+        }
+            console.log("Loading " + f + " from cache");
+            cb(null, cache[f].content);
+            return;         
+    });
 }
 var pages = [
     {id: '1', route: '', output: 'Woohoo!'},
