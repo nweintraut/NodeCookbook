@@ -13,6 +13,7 @@
   "dependencies": {
     "hotnode": "*",
     "connect": "*",
-    "formidable": "*"
+    "formidable": "*",
+    "colors": "*"
   }
 }
