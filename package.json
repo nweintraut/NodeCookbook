@@ -16,6 +16,7 @@
     "formidable": "*",
     "colors": "*",
     "redis": "*",
-    "websocket": "*"
+    "websocket": "*",
+    "socket.io": "*"
   }
 }
