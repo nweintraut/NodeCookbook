@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>WebSockets</title>
+    </head>
+    <body>
+        <input id=msg /><button id=send>Send</button>
+        <div id=output></div>
+        <script>
+            (function(){
+                window.WebSocket = window.WebSocket || window.MozWebSocket;
+                var ws      = new WebSocket("ws://nodecookbook.nweintraut.c9.io"),
+                    output  = document.getElementById('output'),
+                    send    = document.getElementById('send');
+                    
+                function logStr(eventStr, msg){
+                    return '<div>' + eventStr + ': ' + msg + "</div>";
+                }
+                send.addEventListener('click', function(){
+                   var msg = document.getElementById('msg').value;
+                   ws.send(msg);
+                   output.innerHTML += logStr('Sent', msg);
+                });
+                ws.onmessage = function(e){
+                    output.innerHTML += logStr('Received', e.data);
+                };
+                ws.onclose = function(e){
+                    output.innerHTML += logStr('Disconnected', e.code + '-' + e.type);
+                };
+                ws.onerror = function(e){
+                    output.innerHTML += logStr('Error', e.data);
+                };
+            })();
+        </script>
+    </body>
+</html>
