@@ -11,5 +11,6 @@ node_modules/
 pids
 logs
 results
+redis_config.js
 
 npm-debug.log
