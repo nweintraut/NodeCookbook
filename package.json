@@ -15,6 +15,7 @@
     "connect": "*",
     "formidable": "*",
     "colors": "*",
-    "redis": "*"
+    "redis": "*",
+    "websocket": "*"
   }
 }
