@@ -18,9 +18,11 @@
                     return '<div>' + eventStr + ': ' + msg + "</div>";
                 }
                 socket.on('connect', function(){
-                    socket.on('ready', function(){
+                    socket.on('hello', function(msg){
                        var connection = document.getElementById('connection');
                        connection.innerHTML = "<span>connected</span>";
+                       output.innerHTML += '<div>Hello ' + msg + '</div>';
+                       socket.emit('helloback', 'the client');
                     });
                     send.addEventListener('click', function(){
                        var msg =document.getElementById('msg').value;

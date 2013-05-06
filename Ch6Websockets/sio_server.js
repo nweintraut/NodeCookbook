@@ -13,8 +13,8 @@ var plainHttpServer = http.createServer(function(request, response){
 var io = require('socket.io').listen(plainHttpServer);
 // io.set('origins', ['localhost', '127.0.0.1:3000', 'c9.io/']);
 io.sockets.on('connection', function(socket){
-    socket.emit('ready');
-   socket.on('message', function(msg){
+    socket.emit('hello', 'socket.io!');
+   socket.on('helloback', function(msg){
        if (msg === 'Hello') {
            socket.send('socket.io!');
        }
