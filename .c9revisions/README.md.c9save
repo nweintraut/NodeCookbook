@@ -2,3 +2,4 @@
 {"contributors":[],"silentsave":false,"ts":1367787206984,"patch":[[{"diffs":[[0,"erver).\n"],[1,"End of Ch1.\n--------"]],"start1":237,"start2":237,"length1":8,"length2":28}]],"length":265,"saved":false}
 {"ts":1367787298178,"patch":[[{"diffs":[[0,"h1.\n--------"],[1,"\nStart of Chapter 2. Exploring the HTTP Object.\n"]],"start1":253,"start2":253,"length1":12,"length2":60}]],"length":313,"saved":false}
 {"contributors":[],"silentsave":false,"ts":1367795342722,"patch":[[{"diffs":[[0,"Object.\n"],[1,"End of Chapter 2."]],"start1":305,"start2":305,"length1":8,"length2":25}]],"length":330,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1367803499392,"patch":[[{"diffs":[[0,"t.\nEnd of Chapter 2."],[1,"\nEnd of Chapter 5.\n"]],"start1":310,"start2":310,"length1":20,"length2":39}]],"length":349,"saved":false}
