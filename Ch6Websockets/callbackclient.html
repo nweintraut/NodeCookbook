@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>WebSockets</title>
+    </head>
+    <body>
+        <div id=connection>Not Connected</div><div><button id=disconnect>Disconnect</button></div>
+        <input id=msg /><button id=send>Send</button>
+        <div id=output></div>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            (function(){
+                var socket  = io.connect("ws://nodecookbook.nweintraut.c9.io"),
+                    output  = document.getElementById('output'),
+                    send    = document.getElementById('send'),
+                    disconnect = document.getElementById('disconnect');
+                
+                function square(num){
+                    output.innerHTML = "<div>" + num + " x " + num + " is " + (num * num) + "</div>";
+                }
+                function logStr(eventStr, msg){
+                    return '<div>' + eventStr + ': ' + msg + "</div>";
+                }
+                socket.on('connect', function(){
+                    socket.emit('give me a number', square);
+                    socket.on('give me a sentence', function(cb){
+                       cb('Ok, here is a sentence.'); 
+                    });
+                    socket.on('message', function(msg){
+                        output.innerHTML += '<div>Received: ' + msg + '</div>';
+                    });
+                    socket.on('hello', function(msg){
+                       var connection = document.getElementById('connection');
+                       connection.innerHTML = "<span>connected</span>";
+                       output.innerHTML += '<div>Hello ' + msg + '</div>';
+                       socket.emit('helloback', 'the client');
+                    });
+                    send.addEventListener('click', function(){
+                       var msg =document.getElementById('msg').value;
+                       socket.send(msg);
+                       output.innerHTML += logStr('Sent', msg);
+                    });
+                    disconnect.addEventListener('click', function(){
+                       socket.disconnect(); 
+                    });
+                    socket.on('message', function(msg){
+                        output.innerHTML += logStr('Received', msg);
+                    });
+                });
+            })();
+        </script>
+    </body>
+</html>
