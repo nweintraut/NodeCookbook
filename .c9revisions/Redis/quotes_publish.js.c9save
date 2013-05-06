@@ -22,3 +22,4 @@
 {"ts":1367802171595,"patch":[[{"diffs":[[0,"config')"],[-1,","],[0,"\n    , c"]],"start1":73,"start2":73,"length1":17,"length2":16}]],"length":1224,"saved":false}
 {"ts":1367802179063,"patch":[[{"diffs":[[0,"isConfig"],[-1,"i"],[0," = requi"]],"start1":44,"start2":44,"length1":17,"length2":16}]],"length":1223,"saved":false}
 {"ts":1367802185465,"patch":[[{"diffs":[[0,"nt.auth("],[1,"redisConfig."],[0,"redisAut"]],"start1":327,"start2":327,"length1":16,"length2":28}]],"length":1235,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1367802770380,"patch":[[{"diffs":[[0,"ndKey);\n"],[1,"        client.publish(params.author, params.quote);\n"],[0,"    }\n  "]],"start1":858,"start2":858,"length1":16,"length2":69}]],"length":1288,"saved":false}

@@ -16,6 +16,7 @@ client.on('ready', function(){
         var randKey = "Quotes:" + (Math.random() * Math.random()).toString(16).replace('.', '');
         client.hmset(randKey, {"author": params.author, "quote": params.quote});
         client.sadd('Author:' + params.author, randKey);
+        client.publish(params.author, params.quote);
     }
     if(params.author) {
         client.smembers('Author:' + params.author, function(err, keys){
