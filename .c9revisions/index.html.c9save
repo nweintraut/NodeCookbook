@@ -1,0 +1,4 @@
+{"ts":1367850217249,"silentsave":true,"restoring":false,"patch":[[]],"length":0}
+{"contributors":[],"silentsave":false,"ts":1367850355773,"patch":[[{"diffs":[[1,"<html>\n    <head>\n        <title>Widget Server</title>\n        <style>\n            #_loc {color:blue;} /* widget customization */\n        </style>\n    </head>\n    <body>\n        \n    </body>\n</html>"]],"start1":0,"start2":0,"length1":0,"length2":198}]],"length":198,"saved":false}
+{"ts":1367850435440,"patch":[[{"diffs":[[0,"\n       "],[-1," "],[1,"<h1> My Web Pag </h1>\n       <script src=\"/widget/widget_server.js\"></script>\n       <script> locWidget.init();</script>"],[0,"\n    </b"]],"start1":169,"start2":169,"length1":17,"length2":136}]],"length":317,"saved":false}
+{"ts":1367851291505,"patch":[[{"diffs":[[0,"pt src=\""],[1,"http://localhost:8081/loc"],[0,"/widget/"]],"start1":211,"start2":211,"length1":16,"length2":41}]],"length":342,"saved":false}
