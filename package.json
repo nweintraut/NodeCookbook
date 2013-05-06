@@ -17,6 +17,7 @@
     "colors": "*",
     "redis": "*",
     "websocket": "*",
-    "socket.io": "*"
+    "socket.io": "*",
+    "socket.io-client": "*"
   }
 }

@@ -7,17 +7,19 @@ var totals = {};
 
 io.configure(function(){
    io.set('resource', '/loc');
-   io.enable('browser clietn gzip');
+   io.enable('browser client gzip');
 });
 sioclient.builder(io.transports(), function(err, siojs){
+    if(err){console.log("error in sioclient builder " + err.message);}
     if(!err){
         io.static.add('/widget.js', function(path, callback){
             callback(null, new Buffer(siojs + ";" + widgetScript));
         });
     }
 });
-io.sockets.ono('connection', function(socket){
+io.sockets.on('connection', function(socket){
    var origin = (socket.handshake.xdomain) ? url.parse(socket.handshake.headers.origin). hostname : 'local';
+   console.log(origin);
    totals[origin] = (totals[origin]) || 0;
    totals[origin] += 1;
    socket.join(origin);
